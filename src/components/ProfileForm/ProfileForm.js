@@ -5,7 +5,7 @@ const ProfileForm = ({ profile, handleSubmit, handleChange }) => (
     <label>Name</label>
     <input
       required
-      placeholder='Enter profile title'
+      placeholder='Name'
       // This name should line up with the state we want to change
       name='name'
       value={profile.name}
@@ -14,7 +14,8 @@ const ProfileForm = ({ profile, handleSubmit, handleChange }) => (
     <label>Photo</label>
     <input
       required
-      placeholder='upload image'
+      placeholder='Upload image'
+      // This name should line up with the state we want to change
       name='url'
       value={profile.url}
       onChange={handleChange}
@@ -22,15 +23,17 @@ const ProfileForm = ({ profile, handleSubmit, handleChange }) => (
     <label>Age</label>
     <input
       required
-      placeholder='how old are you'
+      placeholder='Enter Age'
+      // This name should line up with the state we want to change
       name='age'
       value={profile.age}
       onChange={handleChange}
     />
-    <label>Contact</label>
+    <label>Contace</label>
     <input
       required
-      placeholder='email@com'
+      placeholder='Enter Email'
+      // This name should line up with the state we want to change
       name='email'
       value={profile.email}
       onChange={handleChange}
@@ -38,12 +41,13 @@ const ProfileForm = ({ profile, handleSubmit, handleChange }) => (
     <label>Bio</label>
     <input
       required
-      placeholder='short bio'
+      placeholder='Bio '
+      // This name should line up with the state we want to change
       name='bio'
       value={profile.bio}
       onChange={handleChange}
     />
-    <button type='submit'>Submit</button>
+    <button type='submit'varient='primary'>Submit</button>
   </form>
 )
 

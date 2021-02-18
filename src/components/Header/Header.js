@@ -7,6 +7,10 @@ const authenticatedOptions = (
     <Nav.Link href="#change-password">Change Password</Nav.Link>
     <Nav.Link href="#sign-out">Sign Out</Nav.Link>
     <Nav.Link href="#create-profile">Create Profile</Nav.Link>
+    <Nav.Link href="#show-profile">Profile</Nav.Link>
+    <Nav.Link href="#update-profile">Edit Profile</Nav.Link>
+    <Nav.Link href="#delete-profile">Delete Profile</Nav.Link>
+    <Nav.Link href="#profiles">All Profile</Nav.Link>
   </Fragment>
 )
 
@@ -26,7 +30,7 @@ const alwaysOptions = (
 const Header = ({ user }) => (
   <Navbar bg="primary" variant="dark" expand="md">
     <Navbar.Brand href="#">
-      BUZZ
+      BUZZ 🐝
     </Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">

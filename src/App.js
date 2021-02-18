@@ -9,7 +9,10 @@ import SignUp from './components/SignUp/SignUp'
 import SignIn from './components/SignIn/SignIn'
 import SignOut from './components/SignOut/SignOut'
 import ChangePassword from './components/ChangePassword/ChangePassword'
+import ProfileIndex from './components/ProfileIndex/ProfileIndex'
 import ProfileCreate from './components/ProfileCreate/ProfileCreate'
+import ProfileShow from './components/ProfileShow/ProfileShow'
+import ProfileUpdate from './components/ProfileUpdate/ProfileUpdate'
 class App extends Component {
   constructor (props) {
     super(props)
@@ -67,6 +70,15 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} path='/create-profile' render={() => (
             <ProfileCreate msgAlert={this.msgAlert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} exact path='/profiles' render={() => (
+            <ProfileIndex msgAlert={this.msgAlert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} exact path='/show-profile/:id' render={() => (
+            <ProfileShow msgAlert={this.msgAlert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} path='/update-profile/:id/edit' render={() => (
+            <ProfileUpdate msgAlert={this.msgAlert} user={user} />
           )} />
         </main>
       </Fragment>

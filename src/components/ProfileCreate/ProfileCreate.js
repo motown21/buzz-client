@@ -2,13 +2,12 @@ import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 
 import ProfileForm from '../ProfileForm/ProfileForm'
-import { profileCreate } from '../../api/profile'
+import { profileCreate } from '../../api/profiles'
 
 class ProfileCreate extends Component {
   constructor (props) {
     super(props)
-
-    // initially our profiles title and director will be empty until they are filled in
+    // this state
     this.state = {
       profile: {
         name: '',
@@ -17,7 +16,7 @@ class ProfileCreate extends Component {
         email: '',
         bio: ''
       },
-      // createdId will be null, until we successfully create a profile
+
       createdId: null
     }
   }
@@ -31,17 +30,17 @@ class ProfileCreate extends Component {
     profileCreate(profile, user)
       .then(res => {
         this.setState({ createdId: res.data.profile._id })
-        // pass the response to the next .then so we can show the title
+
         return res
       })
       .then(res => msgAlert({
-        heading: 'Created profile Successfully',
-        message: `profile has been created successfully. Now viewing ${res.data.profile.title}.`,
+        heading: 'Created Profile Successfully',
+        message: `Profile has been created successfully. Now viewing ${res.data.profile.title}.`,
         variant: 'success'
       }))
       .catch(error => {
         msgAlert({
-          heading: 'Failed to Create profile',
+          heading: 'Failed to Create Profile',
           message: 'Could not create profile with error: ' + error.message,
           variant: 'danger'
         })
@@ -53,6 +52,7 @@ class ProfileCreate extends Component {
 
     this.setState(state => {
       return {
+
         profile: { ...state.profile, [event.target.name]: event.target.value }
       }
     })
@@ -62,13 +62,13 @@ class ProfileCreate extends Component {
     const { profile, createdId } = this.state
 
     if (createdId) {
-      // redirect to the profiles show page
+      // create profiles
       return <Redirect to={`/profiles/${createdId}`} />
     }
 
     return (
       <div>
-        <h3>Create profile</h3>
+        <h3>Create Profile</h3>
         <ProfileForm
           profile={profile}
           handleChange={this.handleChange}
