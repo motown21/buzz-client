@@ -7,10 +7,8 @@ const authenticatedOptions = (
     <Nav.Link href="#change-password">Change Password</Nav.Link>
     <Nav.Link href="#sign-out">Sign Out</Nav.Link>
     <Nav.Link href="#create-profile">Create Profile</Nav.Link>
-    <Nav.Link href="#show-profile">Profile</Nav.Link>
-    <Nav.Link href="#update-profile">Edit Profile</Nav.Link>
-    <Nav.Link href="#delete-profile">Delete Profile</Nav.Link>
-    <Nav.Link href="#profiles">All Profile</Nav.Link>
+    <Nav.Link href="#profiles/_id">My Profile</Nav.Link>
+    <Nav.Link href="#profiles">All Profiles</Nav.Link>
   </Fragment>
 )
 

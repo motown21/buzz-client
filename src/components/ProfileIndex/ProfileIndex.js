@@ -50,16 +50,14 @@ class ProfileIndex extends Component {
       <Link to={`/profiles/${profile._id}`} key={profile._id}>
         <li>
           {profile.name}
-          {profile.age}
-          {profile.contact}
-          {profile.age}
+          {profile.photo}
         </li>
       </Link>
     ))
 
     return (
       <div>
-        <h3>Bees</h3>
+        <h3>BEES</h3>
         <ul>
           {profilesJsx}
         </ul>

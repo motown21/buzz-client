@@ -74,10 +74,10 @@ class App extends Component {
           <AuthenticatedRoute user={user} exact path='/profiles' render={() => (
             <ProfileIndex msgAlert={this.msgAlert} user={user} />
           )} />
-          <AuthenticatedRoute user={user} exact path='/show-profile/:id' render={() => (
+          <AuthenticatedRoute user={user} exact path='/profiles/:id' render={() => (
             <ProfileShow msgAlert={this.msgAlert} user={user} />
           )} />
-          <AuthenticatedRoute user={user} path='/update-profile/:id/edit' render={() => (
+          <AuthenticatedRoute user={user} path='/profile/:id/edit' render={() => (
             <ProfileUpdate msgAlert={this.msgAlert} user={user} />
           )} />
         </main>

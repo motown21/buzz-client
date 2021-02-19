@@ -68,7 +68,7 @@ class ProfileCreate extends Component {
 
     return (
       <div>
-        <h3>Create Profile</h3>
+
         <ProfileForm
           profile={profile}
           handleChange={this.handleChange}

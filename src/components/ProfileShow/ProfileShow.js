@@ -1,8 +1,19 @@
-import React, { Component } from 'react'
-import Spinner from 'react-bootstrap/Spinner'
+import React, { Component, Fragment } from 'react'
+// import Spinner from 'react-bootstrap/Spinner'
 // import withRouter so we have access to the match route prop
 import { withRouter, Redirect, Link } from 'react-router-dom'
 import { profileShow, profileDelete } from '../../api/profiles'
+// import Card from 'react-bootstrap/Card'
+// import CardDeck from 'react-bootstrap/CardDeck'
+
+// const cardContainerLayout = {
+//   display: 'flex',
+//   justifyContent: 'space-around',
+//   flexFlow: 'row wrap',
+//   flexBasis: 'auto',
+//   margin: '10px',
+//   padding: '10px'
+// }
 
 class ProfileShow extends Component {
   constructor (props) {
@@ -16,11 +27,10 @@ class ProfileShow extends Component {
 
   componentDidMount () {
     const { user, match, msgAlert } = this.props
-
     // make a request for a single Profile
     profileShow(match.params.id, user)
       // set the Profile state, to the Profile we got back in the response's data
-      .then(res => this.setState({ profile: res.data.profile.id }))
+      .then(res => this.setState({ profile: res.data.profile }))
       .then(() => msgAlert({
         heading: 'Showing Profile Successfully',
         message: 'The Profile is now displayed.',
@@ -58,31 +68,35 @@ class ProfileShow extends Component {
 
   render () {
     const { profile, deleted } = this.state
-
-    // if we don't have a Profile yet
-    if (!profile) {
-      // A Spinner is just a nice loading message we get from react bootstrap
-      return (
-        <Spinner animation="border" role="status">
-          <span className="sr-only">Loading...</span>
-        </Spinner>
-      )
-    }
-
+    let profileJsx
     // if the Profile is deleted
     if (deleted) {
       return <Redirect to="/profiles" />
     }
-
-    return (
-      <div>
+    // if we don't have a Profile yet
+    if (!profile) {
+      // return loading image
+      return (
+        profileJsx = <img style={{ width: '30%' }}
+          src="https://wpamelia.com/wp-content/uploads/2018/11/ezgif-2-6d0b072c3d3f.gif" alt="loading gif"/>
+      )
+    }
+    profileJsx = (
+      <Fragment>
         <h3>{profile.name}</h3>
-        <h4>age: {profile.age}</h4>
-        <button onClick={this.handleDelete}>Delete Profile</button>
+        <p>Bio: {profile.bio}</p>
+        <h4>Age: {profile.age}</h4>
+        <button onClick={this.handelDelete}>Delete Profile</button>
         <button>
-          <Link to={`/profiles/${profile._id}/edit`}>Update Profile</Link>
+          <Link to={`/profiles/${profile._id}`}>Edit Profile</Link>
         </button>
-      </div>
+      </Fragment>
+    )
+    return (
+      <Fragment>
+        <h2>My Profile</h2>
+        {deleted ? <Redirect to="/profiles"/> : profileJsx}
+      </Fragment>
     )
   }
 }
