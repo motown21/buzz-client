@@ -12,7 +12,7 @@ import SignIn from './components/SignIn/SignIn'
 import SignOut from './components/SignOut/SignOut'
 import ChangePassword from './components/ChangePassword/ChangePassword'
 // import Porfile Components
-// import ProfileIndex from './components/ProfileIndex/ProfileIndex'
+import ProfileIndex from './components/ProfileIndex/ProfileIndex'
 import ProfileCreate from './components/ProfileCreate/ProfileCreate'
 import ProfileShow from './components/ProfileShow/ProfileShow'
 import ProfileUpdate from './components/ProfileUpdate/ProfileUpdate'
@@ -82,6 +82,9 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} path='/create-profile' render={() => (
             <ProfileCreate msgAlert={this.msgAlert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} exact path='/profiles' render={() => (
+            <ProfileIndex msgAlert={this.msgAlert} user={user} />
           )} />
           <AuthenticatedRoute user={user} exact path='/profiles/:id' render={() => (
             <ProfileShow msgAlert={this.msgAlert} user={user} />
