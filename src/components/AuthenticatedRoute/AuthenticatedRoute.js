@@ -1,5 +1,6 @@
 import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
+// import ReactPlayer from 'react-player/lazy'
 
 // props will include a `user` object or empty object
 // props will include a `component` as `Component` or a `render`
@@ -18,7 +19,7 @@ const AuthenticatedRoute = ({
   // if props do not include a `user` object then redirect to home
   } else {
     return <Route {...rest} render={props =>
-      user ? <Component {...props} /> : <Redirect to='/' />
+      user ? <Component {...props} /> : <Redirect to='#/' />
     } />
   }
 }

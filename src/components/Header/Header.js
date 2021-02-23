@@ -6,9 +6,14 @@ const authenticatedOptions = (
   <Fragment>
     <Nav.Link href="#change-password">Change Password</Nav.Link>
     <Nav.Link href="#sign-out">Sign Out</Nav.Link>
+
     <Nav.Link href="#create-profile">Create Profile</Nav.Link>
     <Nav.Link href="#profiles/_id">My Profile</Nav.Link>
     <Nav.Link href="#profiles">All Profiles</Nav.Link>
+
+    <Nav.Link href="#create-post">Create Post</Nav.Link>
+    <Nav.Link href="#posts/_id">My BUZZ</Nav.Link>
+    <Nav.Link href="#posts">THE BUZZ</Nav.Link>
   </Fragment>
 )
 

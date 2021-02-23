@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button'
 const ProfileForm = ({ profile, handleSubmit, handleChange }) => (
   <div className="row">
     <div className="col-sm-10 col-md-8 mx-auto mt-5">
-      <h3>Create Profile</h3>
+      <h3>Profile</h3>
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="name">
           <Form.Label>Name</Form.Label>
@@ -18,7 +18,7 @@ const ProfileForm = ({ profile, handleSubmit, handleChange }) => (
             onChange={handleChange}
           />
         </Form.Group>
-        <Form.Group controlId="name">
+        <Form.Group controlId="url">
           <Form.Label>Photo</Form.Label>
           <Form.Control
             required
@@ -40,7 +40,7 @@ const ProfileForm = ({ profile, handleSubmit, handleChange }) => (
             onChange={handleChange}
           />
         </Form.Group>
-        <Form.Group controlId="contact">
+        <Form.Group controlId="Email">
           <Form.Label>Email</Form.Label>
           <Form.Control
             required

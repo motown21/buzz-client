@@ -1,48 +1,55 @@
-import React, { Component, Fragment } from 'react'
-// import Spinner from 'react-bootstrap/Spinner'
+import React, { Component } from 'react'
+import Spinner from 'react-bootstrap/Spinner'
 // import withRouter so we have access to the match route prop
-import { withRouter, Redirect, Link } from 'react-router-dom'
+import { withRouter, Redirect } from 'react-router-dom'
 import { profileShow, profileDelete } from '../../api/profiles'
+import Button from 'react-bootstrap/Button'
 // import Card from 'react-bootstrap/Card'
 // import CardDeck from 'react-bootstrap/CardDeck'
 
-// const cardContainerLayout = {
-//   display: 'flex',
-//   justifyContent: 'space-around',
-//   flexFlow: 'row wrap',
-//   flexBasis: 'auto',
-//   margin: '10px',
-//   padding: '10px'
-// }
+const cardContainerLayout = {
+  display: 'flex',
+  justifyContent: 'space-around',
+  flexFlow: 'row wrap',
+  flexBasis: 'auto',
+  margin: '10px',
+  padding: '10px'
+}
 
 class ProfileShow extends Component {
   constructor (props) {
     super(props)
 
+    // initially our profile state will be null, until it is fetched from the api
     this.state = {
       profile: null,
-      deleted: false
+      deleted: false,
+      updated: false
     }
   }
 
   componentDidMount () {
     const { user, match, msgAlert } = this.props
-    // make a request for a single Profile
+
+    // make a request for a single profile
     profileShow(match.params.id, user)
-      // set the Profile state, to the Profile we got back in the response's data
+      // set the profile state, to the profile we got back in the response's data
       .then(res => this.setState({ profile: res.data.profile }))
       .then(() => msgAlert({
-        heading: 'Showing Profile Successfully',
-        message: 'The Profile is now displayed.',
+        heading: 'Showing profile Successfully',
+        message: 'The profile is now displayed.',
         variant: 'success'
       }))
       .catch(error => {
         msgAlert({
-          heading: 'Showing Profile Failed',
-          message: 'Failed to show Profile with error: ' + error.message,
+          heading: 'Showing profile Failed',
+          message: 'Failed to show profile with error: ' + error.message,
           variant: 'danger'
         })
       })
+  }
+  updateProfile = (event) => {
+    this.setState({ updated: true })
   }
 
   handleDelete = event => {
@@ -50,16 +57,16 @@ class ProfileShow extends Component {
 
     // make a delete axios request
     profileDelete(match.params.id, user)
-      // set the deleted variable to true, to redirect to the Profiles page in render
+      // set the deleted variable to true, to redirect to the profiles page in render
       .then(() => this.setState({ deleted: true }))
       .then(() => msgAlert({
-        heading: 'Deleted Profile Successfully!',
-        message: 'Profile deleted!',
+        heading: 'Deleted profile Successfully!',
+        message: 'profile deleted!',
         variant: 'success'
       }))
       .catch(error => {
         msgAlert({
-          heading: 'Deleting Profile Failed',
+          heading: 'Deleting profile Failed',
           message: 'Failed with error: ' + error.message,
           variant: 'danger'
         })
@@ -67,36 +74,37 @@ class ProfileShow extends Component {
   }
 
   render () {
-    const { profile, deleted } = this.state
-    let profileJsx
-    // if the Profile is deleted
-    if (deleted) {
-      return <Redirect to="/profiles" />
-    }
-    // if we don't have a Profile yet
+    const { profile, deleted, updated } = this.state
+
+    // if we don't have a profile yet
     if (!profile) {
-      // return loading image
+      // A Spinner is just a nice loading message we get from react bootstrap
       return (
-        profileJsx = <img style={{ width: '30%' }}
-          src="https://wpamelia.com/wp-content/uploads/2018/11/ezgif-2-6d0b072c3d3f.gif" alt="loading gif"/>
+        <Spinner animation="border" role="status">
+          <span className="sr-only">Loading...</span>
+        </Spinner>
       )
     }
-    profileJsx = (
-      <Fragment>
-        <h3>{profile.name}</h3>
-        <p>Bio: {profile.bio}</p>
-        <h4>Age: {profile.age}</h4>
-        <button onClick={this.handelDelete}>Delete Profile</button>
-        <button>
-          <Link to={`/profiles/${profile._id}`}>Edit Profile</Link>
-        </button>
-      </Fragment>
-    )
+
+    // if the profile is deleted
+    if (deleted) {
+      // redirect to the profiles index page
+      return <Redirect to="/profiles" />
+    }
+    if (updated) {
+      return <Redirect to={`/profiles/edit/${profile._id}`} key={profile._id}/>
+    }
+
     return (
-      <Fragment>
-        <h2>My Profile</h2>
-        {deleted ? <Redirect to="/profiles"/> : profileJsx}
-      </Fragment>
+      <div>
+        <div style={ cardContainerLayout }>
+          <h3>{profile.name}</h3><br></br>
+          <p>Bio: {profile.bio}</p><br></br>
+          <h4>Age: {profile.age}</h4>
+          <Button vareient='primary' onClick={this.handelDelete}>Delete Profile</Button>
+          <Button vareint='primaty' onClick={this.updateProfile}>Edit Profile</Button>
+        </div>
+      </div>
     )
   }
 }

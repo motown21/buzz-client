@@ -63,7 +63,7 @@ class ProfileCreate extends Component {
 
     if (createdId) {
       // create profiles
-      return <Redirect to={`/profiles/${createdId}`} />
+      return <Redirect to= '/profiles' />
     }
 
     return (

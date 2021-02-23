@@ -1,18 +1,27 @@
 import React, { Component, Fragment } from 'react'
 import { Route } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
-
+// import authenticaiton components
 import AuthenticatedRoute from './components/AuthenticatedRoute/AuthenticatedRoute'
+// import UnAuthenticatedRoute from './components/UnAuthenticatedRoute/UnAuthenticatedRoute'
 import AutoDismissAlert from './components/AutoDismissAlert/AutoDismissAlert'
 import Header from './components/Header/Header'
+import Home from './components/Home/Home'
 import SignUp from './components/SignUp/SignUp'
 import SignIn from './components/SignIn/SignIn'
 import SignOut from './components/SignOut/SignOut'
 import ChangePassword from './components/ChangePassword/ChangePassword'
-import ProfileIndex from './components/ProfileIndex/ProfileIndex'
+// import Porfile Components
+// import ProfileIndex from './components/ProfileIndex/ProfileIndex'
 import ProfileCreate from './components/ProfileCreate/ProfileCreate'
 import ProfileShow from './components/ProfileShow/ProfileShow'
 import ProfileUpdate from './components/ProfileUpdate/ProfileUpdate'
+// import Post components
+import PostIndex from './components/PostIndex/PostIndex'
+import PostCreate from './components/PostCreate/PostCreate'
+import PostShow from './components/PostShow/PostShow'
+// import PostDelete from './components/PostDelete/PostDelete'
+
 class App extends Component {
   constructor (props) {
     super(props)
@@ -62,6 +71,9 @@ class App extends Component {
           <Route path='/sign-in' render={() => (
             <SignIn msgAlert={this.msgAlert} setUser={this.setUser} />
           )} />
+          <Route path='/' render={() => (
+            <Home msgAlert={this.msgAlert} setUser={this.setUser} />
+          )} />
           <AuthenticatedRoute user={user} path='/sign-out' render={() => (
             <SignOut msgAlert={this.msgAlert} clearUser={this.clearUser} user={user} />
           )} />
@@ -71,14 +83,20 @@ class App extends Component {
           <AuthenticatedRoute user={user} path='/create-profile' render={() => (
             <ProfileCreate msgAlert={this.msgAlert} user={user} />
           )} />
-          <AuthenticatedRoute user={user} exact path='/profiles' render={() => (
-            <ProfileIndex msgAlert={this.msgAlert} user={user} />
-          )} />
           <AuthenticatedRoute user={user} exact path='/profiles/:id' render={() => (
             <ProfileShow msgAlert={this.msgAlert} user={user} />
           )} />
-          <AuthenticatedRoute user={user} path='/profile/:id/edit' render={() => (
+          <AuthenticatedRoute user={user} path='/profiles/edit/:id' render={() => (
             <ProfileUpdate msgAlert={this.msgAlert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} path='/create-post' render={() => (
+            <PostCreate msgAlert={this.msgAlert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} exact path='/posts' render={() => (
+            <PostIndex msgAlert={this.msgAlert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} exact path='/posts/:id' render={() => (
+            <PostShow msgAlert={this.msgAlert} user={user} />
           )} />
         </main>
       </Fragment>
@@ -87,3 +105,13 @@ class App extends Component {
 }
 
 export default App
+
+// <AuthenticatedRoute user={user} exact path='/posts' render={() => (
+//   <PostIndex msgAlert={this.msgAlert} user={user} />
+// )} />
+// <AuthenticatedRoute user={user} exact path='/posts/:id' render={() => (
+//   <PostShow msgAlert={this.msgAlert} user={user} />
+// )} />
+// <AuthenticatedRoute user={user} path='/posts/:id' render={() => (
+//   <PostDelete msgAlert={this.msgAlert} user={user} />
+// )} />

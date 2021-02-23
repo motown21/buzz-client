@@ -2,9 +2,9 @@ import apiUrl from '../apiConfig'
 
 import axios from 'axios'
 
-export const profileIndex = user => {
+export const postIndex = user => {
   return axios({
-    url: apiUrl + '/profiles',
+    url: apiUrl + '/posts',
     method: 'GET',
     headers: {
       'Authorization': `Bearer ${user.token}`
@@ -12,21 +12,21 @@ export const profileIndex = user => {
   })
 }
 
-export const profileCreate = (profile, user) => {
+export const postCreate = (post, user) => {
   return axios({
-    url: apiUrl + '/profiles',
+    url: apiUrl + '/posts',
     method: 'POST',
     headers: {
       'Authorization': `Bearer ${user.token}`
     },
-    data: { profile }
+    data: { post }
   })
 }
 
-// get a single profile
-export const profileShow = (id, user) => {
+// get a single post
+export const postShow = (id, user) => {
   return axios({
-    url: apiUrl + '/profiles/' + id,
+    url: apiUrl + '/posts/' + id,
     method: 'GET',
     headers: {
       'Authorization': `Bearer ${user.token}`
@@ -34,23 +34,22 @@ export const profileShow = (id, user) => {
   })
 }
 
-export const profileDelete = (id, user) => {
+export const postDelete = (id, user) => {
   return axios({
-    url: apiUrl + '/profiles/' + id,
+    url: apiUrl + '/posts/' + id,
     method: 'DELETE',
     headers: {
       'Authorization': `Bearer ${user.token}`
     }
   })
 }
-
-export const profileUpdate = (id, profile, user) => {
+export const postUpdate = (id, post, user) => {
   return axios({
-    url: apiUrl + '/profiles/' + id,
+    url: apiUrl + '/posts/' + id,
     method: 'PATCH',
     headers: {
       'Authorization': `Bearer ${user.token}`
     },
-    data: { profile }
+    data: { post }
   })
 }

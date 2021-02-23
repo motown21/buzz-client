@@ -7,11 +7,18 @@ import { profileShow, profileUpdate } from '../../api/profiles'
 import ProfileForm from '../ProfileForm/ProfileForm'
 
 class ProfileUpdate extends Component {
-  constructor () {
-    super()
+  constructor (props) {
+    super(props)
 
     this.state = {
-      profile: null,
+      profile: {
+        name: '',
+        url: '',
+        age: '',
+        email: '',
+        bio: ''
+      },
+
       updated: false
     }
   }
@@ -43,7 +50,10 @@ class ProfileUpdate extends Component {
     const { profile } = this.state
 
     profileUpdate(match.params.id, profile, user)
-      .then(res => this.setState({ updated: true }))
+      .then(res => {
+        this.setState({ updated: true })
+        return res
+      })
       .then(() => {
         msgAlert({
           heading: 'Updated profile Successfully',
@@ -62,7 +72,12 @@ class ProfileUpdate extends Component {
 
   // same handleChange from profileCreate
   handleChange = event => {
-    this.setState({ profile: { ...this.state.profile, [event.target.name]: event.target.value } })
+    event.persist()
+    this.setState(state => {
+      return {
+        profile: { ...this.state.profile, [event.target.name]: event.target.value }
+      }
+    })
   }
 
   render () {
@@ -77,8 +92,7 @@ class ProfileUpdate extends Component {
         </Spinner>
       )
     }
-
-    // if the profile is deleted
+    // if updated
     if (updated) {
       // redirect to the profiles index page
       return <Redirect to={`/profiles/${this.props.match.params.id}`} />
@@ -87,11 +101,13 @@ class ProfileUpdate extends Component {
     return (
       <div>
         <h3>Edit Profile</h3>
-        <ProfileForm
-          profile={profile}
-          handleChange={this.handleChange}
-          handleSubmit={this.handleSubmit}
-        />
+        <div>
+          <ProfileForm
+            profile={profile}
+            handleChange={this.handleChange}
+            handleSubmit={this.handleSubmit}
+          />
+        </div>
       </div>
     )
   }
