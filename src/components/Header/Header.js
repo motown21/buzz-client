@@ -9,7 +9,7 @@ const authenticatedOptions = (
 
     <Nav.Link href="#create-profile">Create Profile</Nav.Link>
     <Nav.Link href="#profiles/_id">My Profile</Nav.Link>
-    <Nav.Link href="#profiles">All Profiles</Nav.Link>
+    <Nav.Link href="#profiles">The Hive</Nav.Link>
 
     <Nav.Link href="#create-post">Create Post</Nav.Link>
     <Nav.Link href="#posts/_id">My BUZZ</Nav.Link>

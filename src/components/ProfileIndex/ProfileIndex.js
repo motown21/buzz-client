@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import Spinner from 'react-bootstrap/Spinner'
 import { profileIndex } from '../../api/profiles'
-import ReactPlayer from 'react-player/lazy'
+// import ReactPlayer from 'react-player/lazy'
 
 class ProfileIndex extends Component {
   constructor (props) {
@@ -48,19 +48,18 @@ class ProfileIndex extends Component {
     }
 
     const profilesJsx = profiles.map(profile => (
-      <Link to={`/profile/${profile._id}`} key={profile._id}>
+      <Link to={`/profiles/${profile._id}`} key={profile._id}>
         <li>
-          {profiles.name}<br></br>
-          {profiles.url}
+          {profile.name}<br></br>
+          {profile.url}
         </li>
       </Link>
     ))
-
+    // <ReactPlayer url='https://www.youtube.com/watch?v=ysz5S6PUM-U' />
     return (
       <div>
         <h3>BEES</h3>
-        <h3> Welcome to the BUZZ</h3>
-        <ReactPlayer url='https://www.youtube.com/watch?v=ysz5S6PUM-U' />
+        <h3> Welcome to the HIVE</h3>
         <ul>
           {profilesJsx}
         </ul>

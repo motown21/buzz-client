@@ -6,7 +6,7 @@ import AuthenticatedRoute from './components/AuthenticatedRoute/AuthenticatedRou
 // import UnAuthenticatedRoute from './components/UnAuthenticatedRoute/UnAuthenticatedRoute'
 import AutoDismissAlert from './components/AutoDismissAlert/AutoDismissAlert'
 import Header from './components/Header/Header'
-import Home from './components/Home/Home'
+// import Home from './components/Home/Home'
 import SignUp from './components/SignUp/SignUp'
 import SignIn from './components/SignIn/SignIn'
 import SignOut from './components/SignOut/SignOut'
@@ -70,9 +70,6 @@ class App extends Component {
           )} />
           <Route path='/sign-in' render={() => (
             <SignIn msgAlert={this.msgAlert} setUser={this.setUser} />
-          )} />
-          <Route path='/' render={() => (
-            <Home msgAlert={this.msgAlert} setUser={this.setUser} />
           )} />
           <AuthenticatedRoute user={user} path='/sign-out' render={() => (
             <SignOut msgAlert={this.msgAlert} clearUser={this.clearUser} user={user} />

@@ -51,7 +51,6 @@ class PostIndex extends Component {
         </li>
       </Link>
     ))
-
     return (
       <div>
         <h3>THE BUZZ</h3>
