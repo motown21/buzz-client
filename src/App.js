@@ -3,7 +3,8 @@ import { Route } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
 // import authenticaiton components
 import AuthenticatedRoute from './components/AuthenticatedRoute/AuthenticatedRoute'
-// import UnAuthenticatedRoute from './components/UnAuthenticatedRoute/UnAuthenticatedRoute'
+import UnAuthCard from './components/UnAuthenticatedCard/UnAuthenticatedCards'
+import CarouselPhotos from './components/CarouselPhotos/CarouselPhotos'
 import AutoDismissAlert from './components/AutoDismissAlert/AutoDismissAlert'
 import Header from './components/Header/Header'
 // import Home from './components/Home/Home'
@@ -65,6 +66,12 @@ class App extends Component {
           />
         ))}
         <main className="container">
+          <Route exact path='/' render={() => (
+            <Fragment>
+              <CarouselPhotos />
+              <UnAuthCard />
+            </Fragment>
+          )} />
           <Route path='/sign-up' render={() => (
             <SignUp msgAlert={this.msgAlert} setUser={this.setUser} />
           )} />
@@ -105,7 +112,22 @@ class App extends Component {
 }
 
 export default App
+// <Route exact path='/' render={() => (
+//   <Home msgAlert={this.msgAlert} user={user} />
+// )} />
 
+// )} />
+// </main>
+// <section className='green'>
+// <Route exact path='/' render={() => (
+//   <Fragment>
+//     <CarouselPhotos/>
+//   </Fragment>
+// // <AuthenticatedRoute user={user} exact path='#/' render={() => (
+//   <Fragment>
+//     <CarouselPhotos/>
+//   </Fragment>
+// )} />
 // <AuthenticatedRoute user={user} exact path='/posts' render={() => (
 //   <PostIndex msgAlert={this.msgAlert} user={user} />
 // )} />

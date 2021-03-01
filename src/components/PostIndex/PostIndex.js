@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import Spinner from 'react-bootstrap/Spinner'
 import { postIndex } from '../../api/posts'
+// import Button from 'react-bootstrap/Button'
+// import Card from 'react-bootstrap/Card'
+// import CardDeck from 'react-bootstrap/CardDeck'
 
 class PostIndex extends Component {
   constructor (props) {
@@ -50,7 +53,8 @@ class PostIndex extends Component {
           {posts.message}
         </li>
       </Link>
-    ))
+    )
+    )
     return (
       <div>
         <h3>THE BUZZ</h3>

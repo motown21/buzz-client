@@ -99,6 +99,7 @@ class ProfileShow extends Component {
       <div>
         <div style={ cardContainerLayout }>
           <h3>{profile.name}</h3><br></br>
+          <a>{profile.url}</a>
           <p>Bio: {profile.bio}</p><br></br>
           <h4>Age: {profile.age}</h4>
           <Button vareient='primary' onClick={this.handelDelete}>Delete Profile</Button>
